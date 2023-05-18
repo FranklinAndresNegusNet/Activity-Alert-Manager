@@ -1,0 +1,19 @@
+# Archivos y directorios de Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pyz
+*.pyi
+.Python
+env/
+venv/
+ENV/
+
+# Archivos y directorios de desarrollo
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.log
