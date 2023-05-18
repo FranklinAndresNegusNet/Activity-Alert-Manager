@@ -1,35 +1,34 @@
 Activity Alert Manager
 
-El Activity Alert Manager es una aplicación de escritorio construida con Python y PyQt5 que permite a los usuarios programar alertas para sus actividades diarias. Las actividades pueden tener un tiempo de inicio y un tiempo de descanso, y el programa enviará notificaciones para indicar cuándo comenzar una actividad, cuándo tomar un descanso y cuándo reanudar una actividad.
-Uso inicial
+Activity Alert Manager is a desktop application built in Python that allows users to schedule alerts for different activities and breaks. With this application, users can add activities with their respective start times and break durations. Alerts are triggered to notify users when an activity is about to start, when break time is approaching, and when it is time to resume an activity after the break.
 
-    Clona este repositorio en tu máquina local.
+Clone this repository on your local machine.
 
 bash
 
 git clone https://github.com/FranklinAndresNegusNet/Activity-Alert-Manager.git
 
-    Navega al directorio del proyecto y ejecuta activity_manager.py:
+Navigate into the project directory and run activity_manager.py:
 
 bash
 
 cd ActivityAlertManager
 python3 activity_manager.py
 
-    En la interfaz de la aplicación, puedes agregar actividades individualmente o en masa. Para cada actividad, necesitarás proporcionar un nombre, una hora de inicio y un tiempo de descanso.
+In the application interface, you can add activities individually or in bulk. For each activity, you will need to provide a name, a start time, and a break time.
 
-    Una vez que las actividades están programadas, recibirás notificaciones en tu escritorio en los momentos programados.
+Once the activities are scheduled, you will receive notifications on your desktop at the scheduled times.
 
-Tecnologías utilizadas
+Technologies Used
 
-    Python: El lenguaje de programación principal utilizado para el desarrollo de la aplicación.
-    PyQt5: Un conjunto de enlaces de Python para la biblioteca de widgets de la interfaz gráfica de usuario Qt. Se utilizó para construir la interfaz de usuario de la aplicación.
-    Schedule: Una biblioteca de Python para la programación de trabajos. Se utilizó para programar las alertas en los momentos especificados.
-    Plyer: Una biblioteca de Python para acceder a las características de los dispositivos de hardware. Se utilizó para generar las notificaciones de escritorio.
+    Python: The main programming language used for developing the application.
+    PyQt5: A set of Python bindings for Qt library's GUI widgets. It was used to build the application's user interface.
+    Schedule: A Python library for job scheduling. It was used to schedule the alerts at specified times.
+    Plyer: A Python library for accessing features of hardware devices. It was used to generate the desktop notifications.
 
-Contribución
+Contributing
 
-Las contribuciones son siempre bienvenidas. Por favor, lee las pautas de contribución antes de contribuir.
-Licencia
+Contributions are always welcome. Please read the contribution guidelines before contributing.
+License
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
+This project is licensed under the MIT License. See the LICENSE file for more details.
