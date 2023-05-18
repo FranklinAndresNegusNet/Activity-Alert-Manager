@@ -7,7 +7,7 @@ Uso inicial
 
 bash
 
-git clone https://github.com/yourusername/ActivityAlertManager.git
+git clone https://github.com/FranklinAndresNegusNet/Activity-Alert-Manager.git
 
     Navega al directorio del proyecto y ejecuta activity_manager.py:
 
