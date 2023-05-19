@@ -9,10 +9,11 @@ import sys
 import threading
 
 class Activity:
-    def __init__(self, name, start_time, break_time):
+    def __init__(self, name, start_time, break_time, end_time):
         self.name = name
         self.start_time = start_time
         self.break_time = break_time
+        self.end_time = end_time
         self.job = None
 
     def alert_start(self):
@@ -30,11 +31,16 @@ class Activity:
                             message=f"Es hora de retomar la actividad: {self.name}",
                             timeout=10)
 
+    def alert_end(self):
+        notification.notify(title="Alerta de actividad",
+                            message=f"La actividad {self.name} ha finalizado",
+                            timeout=10)
+
     def schedule_alert(self, alert_time):
         if self.job:
             self.job.cancel()
 
-        self.job = schedule.every().day.at(alert_time).do(self.alert_resume)
+        self.job = schedule.every().day.at(self.end_time).do(self.alert_end)
 
 
     
@@ -43,12 +49,13 @@ class ActivityManager:
     def __init__(self):
         self.activities = []
 
-    def add_activity(self, name, start_time, break_time):
-        activity = Activity(name, start_time, break_time)
+    def add_activity(self, name, start_time, break_time, end_time):
+        activity = Activity(name, start_time, break_time, end_time)
         self.activities.append(activity)
         schedule.every().day.at(start_time).do(activity.alert_start)
         schedule.every().day.at((datetime.strptime(start_time, '%H:%M') + timedelta(minutes=break_time - 5)).strftime('%H:%M')).do(activity.alert_break)
         schedule.every().day.at((datetime.strptime(start_time, '%H:%M') + timedelta(minutes=break_time)).strftime('%H:%M')).do(activity.alert_resume)
+        schedule.every().day.at(end_time).do(activity.alert_end)
         return activity
 
     def delete_activity(self, name):
@@ -119,13 +126,22 @@ class MainWindow(QMainWindow):
             if ok and self.is_valid_time(start_time):
                 break_time, ok = QtWidgets.QInputDialog.getInt(self, 'Agregar actividad', 'Tiempo de descanso en minutos:', min=1)
                 if ok:
-                    try:
-                        self.activity_manager.add_activity(name, start_time, break_time)
-                        self.update_activity_list()
-                    except Exception as e:
-                        print(f"Ocurrió un error al agregar la actividad: {str(e)}")
+                    end_time, ok = QtWidgets.QInputDialog.getText(self, 'Agregar actividad', 'Hora de finalización (formato 24h, ej: 17:30):')
+                    if ok and self.is_valid_time(end_time):
+                        try:
+                            self.activity_manager.add_activity(name, start_time, break_time, end_time)  # Aquí es donde debes incluir end_time
+                            self.update_activity_list()
+                            self.update_activity_list()
+                        except Exception as e:
+                            print(f"Ocurrió un error al agregar la actividad: {str(e)}")
+                    else:
+                        print("La hora de finalización no es válida.")
+                else:
+                    print("El tiempo de descanso no es válido.")
             else:
                 print("La hora de inicio no es válida.")
+
+
 
 
     def delete_activity(self):
