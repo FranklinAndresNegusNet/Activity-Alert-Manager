@@ -188,10 +188,10 @@ class MainWindow(QMainWindow):
             self.activity_list.addItem(f"Actividad: {activity.name}, Hora de inicio: {activity.start_time}, Tiempo de descanso: {activity.break_time} minutos")
 
 
-def run_schedule():
+def run_schedule(sleep_time=1):
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(sleep_time)
 
 def main():
     activity_manager = ActivityManager()
